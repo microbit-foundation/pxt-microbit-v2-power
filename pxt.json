@@ -1,19 +1,22 @@
 {
     "name": "power",
-    "description": "",
+    "version": "0.0.1",
+    "description": "Power saving. micro:bit (V2) only.",
     "dependencies": {
-        "core": "*",
-        "radio": "*",
-        "microphone": "*"
+        "core": "*"
     },
     "files": [
         "main.blocks",
         "main.ts",
-        "README.md"
+        "README.md",
+        "power.cpp",
+        "enums.d.ts",
+        "shims.d.ts"
     ],
     "testFiles": [
         "test.ts"
     ],
+    "public": true,
     "targetVersions": {
         "target": "4.0.11",
         "targetId": "microbit"
