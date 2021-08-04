@@ -8,6 +8,12 @@
     A = 1,  // MICROBIT_ID_BUTTON_A
     B = 2,  // MICROBIT_ID_BUTTON_B
     }
+
+
+    declare const enum PowerDownChoice {
+    block = 0,
+    allow = 1,
+    }
 declare namespace power {
 }
 
