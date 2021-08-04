@@ -6,8 +6,6 @@
         "core": "*"
     },
     "files": [
-        "main.blocks",
-        "main.ts",
         "README.md",
         "power.cpp",
         "enums.d.ts",

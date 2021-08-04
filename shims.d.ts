@@ -24,8 +24,8 @@ declare namespace power {
     //% blockGap=8
     //% group="micro:bit (V2)"
     //% weight=400
-    //% block="request deep sleep" shim=power::deepSleepAsync
-    function deepSleepAsync(): void;
+    //% block="request power down" shim=power::powerDownRequest
+    function powerDownRequest(): void;
 
     /**
      * Pause for a fixed interval, and request power down when idle.
@@ -64,8 +64,8 @@ declare namespace power {
     //% blockGap=8
     //% group="micro:bit (V2)"
     //% weight=500
-    //% block="%choice power down" shim=power::powerDown
-    function powerDown(choice: PowerDownChoice): void;
+    //% block="power down %choice" shim=power::powerDownEnable
+    function powerDownEnable(choice: PowerDown): void;
 
     /**
      * Determine if power down during deepSleep is enabled

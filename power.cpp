@@ -17,14 +17,14 @@
 
 
 enum class PowerWakeup {
+    A  = MICROBIT_ID_BUTTON_A,
+    B  = MICROBIT_ID_BUTTON_B,
     P0 = MICROBIT_ID_IO_P0,
     P1 = MICROBIT_ID_IO_P1,
-    P2 = MICROBIT_ID_IO_P2,
-    A  = MICROBIT_ID_BUTTON_A,
-    B  = MICROBIT_ID_BUTTON_B
+    P2 = MICROBIT_ID_IO_P2
 };
 
-enum class PowerDownChoice {
+enum class PowerDown {
     block,
     allow
 };
@@ -64,8 +64,8 @@ void deepSleep() {
 //% blockGap=8
 //% group="micro:bit (V2)"
 //% weight=400
-//% block="request deep sleep"
-void deepSleepAsync() {
+//% block="request power down"
+void powerDownRequest() {
 #if MICROBIT_CODAL
     uBit.power.deepSleepAsync();
 #else
@@ -127,16 +127,16 @@ void onTimerEvery(unsigned interval, Action body) {
 //% blockGap=8
 //% group="micro:bit (V2)"
 //% weight=500
-//% block="%choice power down"
-void powerDown(PowerDownChoice choice) {
+//% block="power down %choice"
+void powerDownEnable(PowerDown choice) {
 #if MICROBIT_CODAL
     switch ( choice)
     {
-        case PowerDownChoice::block:
+        case PowerDown::block:
             uBit.power.powerDownDisable();
             break;
 
-        case PowerDownChoice::allow:
+        case PowerDown::allow:
             uBit.power.powerDownEnable();
             break;
 
