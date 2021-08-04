@@ -94,23 +94,22 @@ void deepSleepPause(unsigned interval) {
 
 
 /**
-  * Do something repeatedy using a timer event.
-  * The timer event is a deep sleep wake-up source.
+  * Do something repeatedy using a wake-up timer.
   * @param interval time (in ms) for the timer.
   * @param body code to execute
   */
-//% block="on timer every $interval ms"
-//% blockId=on_timer_every
-//% group="micro:bit (V2)"
+//% help=power/wake-every
 //% blockAllowMultiple=1
 //% interval.shadow=longTimePicker
 //% afterOnStart=true
+//% group="micro:bit (V2)"
 //% weight=600
-//% help=power/on-timer-every
-void onTimerEvery(unsigned interval, Action body) {
+//% block="wake every $interval ms"
+void wakeEvery(unsigned interval, Action body) {
 #if MICROBIT_CODAL
     registerWithDal( timerEventSource, timerEventValue, body);
     // CODAL_TIMER_EVENT_FLAGS_WAKEUP makes the timer event trigger power up
+    system_timer_event_after( 0, timerEventSource, timerEventValue++, CODAL_TIMER_EVENT_FLAGS_WAKEUP);
     system_timer_event_every( interval, timerEventSource, timerEventValue++, CODAL_TIMER_EVENT_FLAGS_WAKEUP);
 #else
     target_panic(PANIC_VARIANT_NOT_SUPPORTED);

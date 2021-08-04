@@ -40,20 +40,18 @@ declare namespace power {
     function deepSleepPause(interval: uint32): void;
 
     /**
-     * Do something repeatedy using a timer event.
-     * The timer event is a deep sleep wake-up source.
+     * Do something repeatedy using a wake-up timer.
      * @param interval time (in ms) for the timer.
      * @param body code to execute
      */
-    //% block="on timer every $interval ms"
-    //% blockId=on_timer_every
-    //% group="micro:bit (V2)"
+    //% help=power/wake-every
     //% blockAllowMultiple=1
     //% interval.shadow=longTimePicker
     //% afterOnStart=true
+    //% group="micro:bit (V2)"
     //% weight=600
-    //% help=power/on-timer-every shim=power::onTimerEvery
-    function onTimerEvery(interval: uint32, body: () => void): void;
+    //% block="wake every $interval ms" shim=power::wakeEvery
+    function wakeEvery(interval: uint32, body: () => void): void;
 
     /**
      * Block or allow power down during deepSleep
