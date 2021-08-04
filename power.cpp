@@ -109,7 +109,7 @@ void wakeEvery(unsigned interval, Action body) {
 #if MICROBIT_CODAL
     registerWithDal( timerEventSource, timerEventValue, body);
     // CODAL_TIMER_EVENT_FLAGS_WAKEUP makes the timer event trigger power up
-    system_timer_event_after( 0, timerEventSource, timerEventValue++, CODAL_TIMER_EVENT_FLAGS_WAKEUP);
+    system_timer_event_after( 0, timerEventSource, timerEventValue, CODAL_TIMER_EVENT_FLAGS_WAKEUP);
     system_timer_event_every( interval, timerEventSource, timerEventValue++, CODAL_TIMER_EVENT_FLAGS_WAKEUP);
 #else
     target_panic(PANIC_VARIANT_NOT_SUPPORTED);
