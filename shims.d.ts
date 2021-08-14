@@ -54,8 +54,8 @@ declare namespace power {
     function wakeEvery(interval: uint32, body: () => void): void;
 
     /**
-     * Block or allow power down during deepSleep
-     * Block and allow requests should occur in pairs.
+     * Prevent or allow power down during deepSleep.
+     * Prevent and allow requests should occur in pairs.
      * The default is to allow.
      */
     //% help=power/power-down

@@ -11,7 +11,7 @@
 
 
     declare const enum PowerDown {
-    block = 0,
+    prevent = 0,
     allow = 1,
     }
 declare namespace power {

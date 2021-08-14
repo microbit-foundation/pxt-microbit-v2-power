@@ -1,5 +1,5 @@
 function flash (x: number) {
-    power.powerDownEnable(PowerDown.block)
+    power.powerDownEnable(PowerDown.prevent)
     led.plot(x, 0)
     basic.pause(1000)
     led.unplot(x, 0)
