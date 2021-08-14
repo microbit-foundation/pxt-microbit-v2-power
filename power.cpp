@@ -21,7 +21,7 @@ enum class PowerWakeup {
 };
 
 enum class PowerDown {
-    block,
+    prevent,
     allow
 };
 
@@ -113,8 +113,8 @@ void wakeEvery(unsigned interval, Action body) {
 
 
 /**
-  * Block or allow power down during deepSleep
-  * Block and allow requests should occur in pairs.
+  * Prevent or allow power down during deepSleep.
+  * Prevent and allow requests should occur in pairs.
   * The default is to allow.
 */
 //% help=power/power-down
@@ -126,7 +126,7 @@ void powerDownEnable(PowerDown choice) {
 #if MICROBIT_CODAL
     switch ( choice)
     {
-        case PowerDown::block:
+        case PowerDown::prevent:
             uBit.power.powerDownDisable();
             break;
 
