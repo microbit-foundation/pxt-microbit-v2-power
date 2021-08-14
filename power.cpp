@@ -5,12 +5,8 @@
 #include "Timer.h"
 #include "MicroBitCompat.h"
 
-#ifndef MICROBIT_POWER_ONTIMEREVERY_ID
-#define MICROBIT_POWER_ONTIMEREVERY_ID MICROBIT_ID_POWER_MANAGER
-#endif
-
-#ifndef MICROBIT_POWER_ONTIMEREVERY_FIRSTVALUE
-#define MICROBIT_POWER_ONTIMEREVERY_FIRSTVALUE 60000
+#ifndef MICROBIT_ID_MAKECODE_POWER
+#define MICROBIT_ID_MAKECODE_POWER 9000
 #endif
 
 #endif // MICROBIT_CODAL
@@ -36,8 +32,7 @@ enum class PowerDown {
 namespace power {
 
 #if MICROBIT_CODAL
-int timerEventSource = MICROBIT_POWER_ONTIMEREVERY_ID;
-int timerEventValue  = MICROBIT_POWER_ONTIMEREVERY_FIRSTVALUE;
+int timerEventValue  = 1;
 #endif // MICROBIT_CODAL
 
 /**
@@ -107,10 +102,10 @@ void deepSleepPause(unsigned interval) {
 //% block="wake every $interval ms"
 void wakeEvery(unsigned interval, Action body) {
 #if MICROBIT_CODAL
-    registerWithDal( timerEventSource, timerEventValue, body);
+    registerWithDal( MICROBIT_ID_MAKECODE_POWER, timerEventValue, body);
     // CODAL_TIMER_EVENT_FLAGS_WAKEUP makes the timer event trigger power up
-    system_timer_event_after( 0, timerEventSource, timerEventValue, CODAL_TIMER_EVENT_FLAGS_WAKEUP);
-    system_timer_event_every( interval, timerEventSource, timerEventValue++, CODAL_TIMER_EVENT_FLAGS_WAKEUP);
+    system_timer_event_after( 0, MICROBIT_ID_MAKECODE_POWER, timerEventValue, CODAL_TIMER_EVENT_FLAGS_WAKEUP);
+    system_timer_event_every( interval, MICROBIT_ID_MAKECODE_POWER, timerEventValue++, CODAL_TIMER_EVENT_FLAGS_WAKEUP);
 #else
     target_panic(PANIC_VARIANT_NOT_SUPPORTED);
 #endif
