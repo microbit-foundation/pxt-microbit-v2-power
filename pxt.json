@@ -8,7 +8,7 @@
     "files": [
         "README.md",
         "power.cpp",
-        "power.ts",
+        "power.ts"
     ],
     "testFiles": [
         "test.ts"
