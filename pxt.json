@@ -1,14 +1,14 @@
 {
     "name": "power",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "description": "Power saving. micro:bit (V2) only.",
     "dependencies": {
         "core": "*"
     },
     "files": [
         "README.md",
-        "power.cpp",
-        "power.ts"
+        "power.ts",
+        "power.cpp"
     ],
     "testFiles": [
         "test.ts"
