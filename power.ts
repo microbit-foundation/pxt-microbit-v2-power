@@ -26,7 +26,7 @@
     //% group="micro:bit (V2)"
     //% weight=800
     //% block="deep sleep" shim=power::deepSleep
-    function deepSleep(): void { basic.pause(0) }
+    export function deepSleep(): void { basic.pause(0) }
 
     /**
      * Request power down when idle, and return immediately.
@@ -36,7 +36,7 @@
     //% group="micro:bit (V2)"
     //% weight=400
     //% block="request power down" shim=power::powerDownRequest
-    function powerDownRequest(): void { basic.pause(0) }
+    export function powerDownRequest(): void { basic.pause(0) }
 
     /**
      * Pause for a fixed interval, and request power down when idle.
@@ -48,7 +48,7 @@
     //% weight=700
     //% block="deep sleep pause $interval ms"
     //% interval.shadow=longTimePicker shim=power::deepSleepPause
-    function deepSleepPause(interval: uint32): void { basic.pause(interval) }
+    export function deepSleepPause(interval: uint32): void { basic.pause(interval) }
 
     /**
      * Do something repeatedy using a wake-up timer.
@@ -62,7 +62,7 @@
     //% group="micro:bit (V2)"
     //% weight=600
     //% block="wake every $interval ms" shim=power::wakeEvery
-    function wakeEvery(interval: uint32, body: () => void): void { basic.pause(0) }
+    export function wakeEvery(interval: uint32, body: () => void): void { basic.pause(0) }
 
     /**
      * Prevent or allow power down during deepSleep.
@@ -74,14 +74,14 @@
     //% group="micro:bit (V2)"
     //% weight=500
     //% block="power down %choice" shim=power::powerDownEnable
-    function powerDownEnable(choice: PowerDown): void { basic.pause(0) }
+    export function powerDownEnable(choice: PowerDown): void { basic.pause(0) }
 
     /**
      * Determine if power down during deepSleep is enabled
      */
     //% help=power/power-down-enabled
     //% group="micro:bit (V2)" shim=power::powerDownIsEnabled
-    function powerDownIsEnabled(): boolean { return true }
+    export function powerDownIsEnabled(): boolean { return true }
 
     /**
      * Set whether the source should trigger power save wake-up.
@@ -90,7 +90,7 @@
      */
     //% help=power/wake-on
     //% group="micro:bit (V2)" shim=power::wakeOn
-    function wakeOn(source: PowerWakeup, wake: boolean): void { basic.pause(0) }
+    export function wakeOn(source: PowerWakeup, wake: boolean): void { basic.pause(0) }
 
     /**
      * Set the source to trigger power save wake-up.
@@ -101,7 +101,7 @@
     //% group="micro:bit (V2)"
     //% weight=900
     //% block="wake on %source" shim=power::wakeOnEnable
-    function wakeOnEnable(source: PowerWakeup): void { basic.pause(0) }
+    export function wakeOnEnable(source: PowerWakeup): void { basic.pause(0) }
 
     /**
      * Determine if the source will trigger power save wake-up.
@@ -109,5 +109,5 @@
      * @return true is wake-up is enabled
      */
     //% help=power/wake-on-enabled shim=power::wakeOnIsEnabled
-    function wakeOnIsEnabled(source: PowerWakeup): boolean { return false }
+    export function wakeOnIsEnabled(source: PowerWakeup): boolean { return false }
 }
