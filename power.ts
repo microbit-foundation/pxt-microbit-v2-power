@@ -48,7 +48,7 @@
     //% weight=700
     //% block="deep sleep pause $interval ms"
     //% interval.shadow=longTimePicker shim=power::deepSleepPause
-    export function deepSleepPause(interval: uint32): void { basic.pause(interval) }
+    export function deepSleepPause(interval: number): void { basic.pause(interval) }
 
     /**
      * Do something repeatedy using a wake-up timer.
@@ -62,7 +62,7 @@
     //% group="micro:bit (V2)"
     //% weight=600
     //% block="wake every $interval ms" shim=power::wakeEvery
-    export function wakeEvery(interval: uint32, body: () => void): void { basic.pause(0) }
+    export function wakeEvery(interval: number, body: () => void): void { basic.pause(0) }
 
     /**
      * Prevent or allow power down during deepSleep.

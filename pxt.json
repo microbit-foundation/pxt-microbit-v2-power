@@ -1,6 +1,6 @@
 {
     "name": "power",
-    "version": "0.0.9",
+    "version": "0.1.0",
     "description": "Power saving. micro:bit (V2) only.",
     "dependencies": {
         "core": "*"
