@@ -1,5 +1,66 @@
+# Makecode Extension to enable power management on micro:bit (V2)
 
-## Use as Extension
+Use this extension to add all the blocks you will need to power the micro:bit on and off in your program when you are using the [latest micro:bit](https://microbit.org/new-microbit/).
+
+This extension might be useful when you want to conserve battery power, such as during a data logging activity.
+
+## Usage
+
+### Put the micro:bit to sleep 💤
+
+To make the micro:bit sleep, you need to send a request to power it down. The ``||power.powerDownRequest||`` block will ask the micro:bit to power down at the next opportunity, such as when the current code operation has been allowed to complete.
+
+```blocks
+input.onButtonPressed(Button.B, function () {
+    power.powerDownRequest()
+})
+```
+
+You can also ask the micro:bit to enter a ``||power.deepSleep||`` where it will pause until a wake up event occurs and power down at the next opportunity.
+
+Sometimes we might want to delay a request for sleep, such as TODO. The ``||power.deepSleepPause(ms)||`` block will ask the micro:bit to delay the sleep operation for a set interval in milliseconds.
+
+You can also use the ``||PowerDown.prevent||`` and ``||PowerDown.allow||`` blocks to block a power down request until the code inside the two blocks has finished running. It is expected that you would use these blocks in pairs.
+
+```blocks
+basic.forever(function () {
+    power.powerDownEnable(PowerDown.prevent)
+    led.plot(2, 2)
+    basic.pause(1000)
+    led.unplot(2, 2)
+    led.plot(2, 1)
+    basic.pause(1000)
+    led.unplot(2, 1)
+    power.powerDownEnable(PowerDown.allow)
+})
+basic.forever(function () {
+    power.powerDownRequest()
+})
+```
+
+### Wake the micro:bit from sleep ⏰
+
+In order to wake the micro:bit, you need to define an event to trigger the wake up call.
+
+You can wake the micro:bit when a button or pin is pressed. In this example, the micro:bit will wake up when Button A or Pin 0 has been pressed.
+
+```blocks
+power.wakeOnEnable(PowerWakeup.A)
+power.wakeOnEnable(PowerWakeup.P0)
+```
+
+You can also wake the micro:bit at a set time interval in milliseconds. In this example, the micro:bit will wake up every minute and show a smiley face on the screen
+
+```blocks
+power.wakeEvery(60000, function () {
+    basic.showIcon(IconNames.Happy)
+    basic.clearScreen()
+})
+```
+
+## Development
+
+### Use as Extension
 
 This repository can be added as an **extension** in MakeCode.
 
@@ -8,20 +69,13 @@ This repository can be added as an **extension** in MakeCode.
 * click on **Extensions** under the gearwheel menu
 * search for **https://github.com/microbit-foundation/pxt-power** and import
 
-## Edit this project ![Build status badge](https://github.com/microbit-foundation/pxt-power/workflows/MakeCode/badge.svg)
+### Edit this project ![Build status badge](https://github.com/microbit-foundation/pxt-power/workflows/MakeCode/badge.svg)
 
 To edit this repository in MakeCode.
 
 * open [https://makecode.microbit.org/](https://makecode.microbit.org/)
 * click on **Import** then click on **Import URL**
 * paste **https://github.com/microbit-foundation/pxt-power** and click import
-
-## Blocks preview
-
-This image shows the blocks code from the last commit in master.
-This image may take a few minutes to refresh.
-
-![A rendered view of the blocks](https://github.com/microbit-foundation/pxt-power/raw/master/.github/makecode/blocks.png)
 
 ## License
 
