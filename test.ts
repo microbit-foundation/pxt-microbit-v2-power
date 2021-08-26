@@ -1,4 +1,10 @@
-function flash (x: number) {
+/**
+ * (c) 2021, Micro:bit Educational Foundation and contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+function flash(x: number) {
     power.powerDownEnable(PowerDown.prevent)
     led.plot(x, 0)
     basic.pause(1000)
