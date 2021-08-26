@@ -1,3 +1,9 @@
+/**
+ * (c) 2021, Micro:bit Educational Foundation and contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
 #include "pxt.h"
 
 #if MICROBIT_CODAL

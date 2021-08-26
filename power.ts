@@ -1,3 +1,9 @@
+/**
+ * (c) 2021, Micro:bit Educational Foundation and contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
     const enum PowerWakeup {
     A = 1,  // MICROBIT_ID_BUTTON_A
     B = 2,  // MICROBIT_ID_BUTTON_B

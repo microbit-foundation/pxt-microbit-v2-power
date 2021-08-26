@@ -57,8 +57,9 @@ power.wakeEvery(60000, function () {
 ```
 
 ## License
+This software made available under the MIT open source license.
 
-[MIT](/LICENSE)
+[SPDX-License-Identifier: MIT](/LICENSE)
 
 ## Code of Conduct
 
