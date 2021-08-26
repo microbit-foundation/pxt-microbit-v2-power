@@ -18,7 +18,7 @@ input.onButtonPressed(Button.B, function () {
 
 You can also ask the micro:bit to enter a ``||power.deepSleep||`` where it will pause until a wake up event occurs and power down at the next opportunity.
 
-Sometimes we might want to delay a request for sleep, such as TODO. The ``||power.deepSleepPause(ms)||`` block will ask the micro:bit to delay the sleep operation for a set interval in milliseconds.
+The ``||power.deepSleepPause(ms)||`` block will also ask the micro:bit to sleep for a set interval in milliseconds.
 
 You can also use the ``||PowerDown.prevent||`` and ``||PowerDown.allow||`` blocks to block a power down request until the code inside the two blocks has finished running. It is expected that you would use these blocks in pairs.
 
@@ -32,8 +32,6 @@ basic.forever(function () {
     basic.pause(1000)
     led.unplot(2, 1)
     power.powerDownEnable(PowerDown.allow)
-})
-basic.forever(function () {
     power.powerDownRequest()
 })
 ```
@@ -57,25 +55,6 @@ power.wakeEvery(60000, function () {
     basic.clearScreen()
 })
 ```
-
-## Development
-
-### Use as Extension
-
-This repository can be added as an **extension** in MakeCode.
-
-* open [https://makecode.microbit.org/](https://makecode.microbit.org/)
-* click on **New Project**
-* click on **Extensions** under the gearwheel menu
-* search for **https://github.com/microbit-foundation/pxt-power** and import
-
-### Edit this project ![Build status badge](https://github.com/microbit-foundation/pxt-power/workflows/MakeCode/badge.svg)
-
-To edit this repository in MakeCode.
-
-* open [https://makecode.microbit.org/](https://makecode.microbit.org/)
-* click on **Import** then click on **Import URL**
-* paste **https://github.com/microbit-foundation/pxt-power** and click import
 
 ## License
 
