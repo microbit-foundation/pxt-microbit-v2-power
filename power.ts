@@ -101,7 +101,7 @@ export function lowPowerIsEnabled(): boolean {
 //% block="full power every $interval ms"
 //% shim=power::fullPowerEvery
 export function fullPowerEvery(interval: number, code: () => void): void {
-    loops.everyInterval(interval, body)
+    loops.everyInterval(interval, code)
 }
 
 /**
