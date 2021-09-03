@@ -5,35 +5,38 @@
  */
 
 const enum FullPowerSource {
-    //%button A
+    //% block="button A"
     A = DAL.MICROBIT_ID_BUTTON_A, // 1
-    //%button B
+    //% block="button B"
     B = DAL.MICROBIT_ID_BUTTON_B, // 2
-    //%pin P0
+    //% block="pin P0"
     P0 = DAL.MICROBIT_ID_IO_P0, // 100
-    //%pin P1
+    //% block="pin P1"
     P1 = DAL.MICROBIT_ID_IO_P1, // 101
-    //%pin P2
+    //% block="pin P2"
     P2 = DAL.MICROBIT_ID_IO_P2 // 102
 }
 
 
 const enum LowPowerMode {
-    //%continue
+    //% block="continue"
     Continue = 0,
-    //%wait
+    //% block="wait"
     Wait = 1
 }
 
 
 const enum LowPowerEnable {
-    //%prevent
+    //% block="prevent"
     Prevent = 0,
-    //%allow
+    //% block="allow"
     Allow = 1
 }
 
 
+//% block="Power"
+//% icon="\uf011"
+//% color=#AA278D
 namespace power {
 
 /**

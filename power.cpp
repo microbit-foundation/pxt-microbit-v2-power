@@ -19,33 +19,36 @@
 
 
 enum class FullPowerSource {
-    //%button A
+    //% block="button A"
     A  = MICROBIT_ID_BUTTON_A,
-    //%button B
+    //% block="button B"
     B  = MICROBIT_ID_BUTTON_B,
-    //%pin P0
+    //% block="pin P0"
     P0 = MICROBIT_ID_IO_P0,
-    //%pin P1
+    //% block="pin P1"
     P1 = MICROBIT_ID_IO_P1,
-    //%pin P2
+    //% block="pin P2"
     P2 = MICROBIT_ID_IO_P2
 };
 
 enum class LowPowerMode {
-    //%continue
+    //% block="continue"
     Continue = 0,
-    //%wait
+    //% block="wait"
     Wait = 1
 };
 
 enum class LowPowerEnable {
-    //%prevent
+    //% block="prevent"
     Prevent,
-    //%allow
+    //% block="allow"
     Allow
 };
 
 
+//% block="Power"
+//% icon="\uf011"
+//% color=#AA278D
 namespace power {
 
 #if MICROBIT_CODAL
