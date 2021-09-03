@@ -5,19 +5,19 @@
  */
 
 function flash(x: number) {
-    power.lowPowerEnable(LowPowerEnable.prevent)
+    power.lowPowerEnable(LowPowerEnable.Prevent)
     led.plot(x, 0)
     basic.pause(1000)
     led.unplot(x, 0)
     led.plot(x, 1)
     basic.pause(1000)
     led.unplot(x, 1)
-    power.lowPowerEnable(LowPowerEnable.allow)
+    power.lowPowerEnable(LowPowerEnable.Allow)
 }
 
 input.onButtonPressed(Button.A, function () {
     flash(1)
-    power.lowPowerRequest()
+    power.lowPowerRequest(LowPowerMode.Continue)
 })
 
 input.onButtonPressed(Button.B, function () {
@@ -29,9 +29,9 @@ basic.showString("POWER")
 power.fullPowerOn(FullPowerSource.A)
 power.fullPowerOn(FullPowerSource.B)
 
-power.wakeEvery(6000, function () {
+power.fullPowerEvery(6000, function () {
     flash(3)
-    power.lowPowerRequest()
+    power.lowPowerRequest(LowPowerMode.Continue)
 })
 
 basic.forever(function () {

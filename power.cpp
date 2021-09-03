@@ -52,12 +52,18 @@ namespace power {
 int timerEventValue  = 1;
 #endif // MICROBIT_CODAL
 
+void lowPowerRequest(LowPowerMode mode = LowPowerMode::Continue);
+
 /**
   * Request low power when the next idle
   * @param mode If Continue, then return immediately; if Wait, then pause until a power-up event occurs 
   */
+//% help=power/low-power-request
+//% group="micro:bit (V2)"
+//% weight=700
+//% block="request low power||and $mode"
 //%
-void lowPowerRequest(LowPowerMode mode = LowPowerMode::Continue) {
+void lowPowerRequest(LowPowerMode mode) {
 #if MICROBIT_CODAL
     if ( mode == LowPowerMode::Wait)
         uBit.power.deepSleep();
@@ -73,6 +79,11 @@ void lowPowerRequest(LowPowerMode mode = LowPowerMode::Continue) {
   * Pause for a fixed interval, and request low power when idle.
   * @param interval The period of time to pause, in milliseconds.
   */
+//% help=power/low-power-for
+//% group="micro:bit (V2)"
+//% weight=600
+//% interval.shadow=longTimePicker
+//% block="request low power for $interval ms"
 //%
 void lowPowerPause(int interval) {
 #if MICROBIT_CODAL
@@ -88,16 +99,20 @@ void lowPowerPause(int interval) {
   * Prevent and allow requests should occur in pairs.
   * The default is to allow.
 */
+//% help=power/low-power-enable
+//% group="micro:bit (V2)"
+//% weight=500
+//% block="low power %enable"
 //%
 void lowPowerEnable(LowPowerEnable enable) {
 #if MICROBIT_CODAL
     switch ( enable)
     {
-        case LowPowerEnable::prevent:
+        case LowPowerEnable::Prevent:
             uBit.power.powerDownDisable();
             break;
 
-        case LowPowerEnable::allow:
+        case LowPowerEnable::Allow:
             uBit.power.powerDownEnable();
             break;
 
@@ -111,6 +126,8 @@ void lowPowerEnable(LowPowerEnable enable) {
 /**
   * Determine if low power is enabled
 */
+//% help=power/low-power-is-enabled
+//% group="micro:bit (V2)"
 //%
 bool lowPowerIsEnabled() {
 #if MICROBIT_CODAL
@@ -126,6 +143,13 @@ bool lowPowerIsEnabled() {
   * @param interval the time (in ms) for the timer.
   * @param code the code to execute
   */
+//% help=power/full-power-every
+//% group="micro:bit (V2)"
+//% weight=800
+//% blockAllowMultiple=1
+//% interval.shadow=longTimePicker
+//% afterOnStart=true
+//% block="full power every $interval ms"
 //%
 void fullPowerEvery(int interval, Action code) {
 #if MICROBIT_CODAL
@@ -144,6 +168,8 @@ void fullPowerEvery(int interval, Action code) {
   * @param source the source to set
   * @param enable true to trigger full power
   */
+//% help=power/full-power-source-enable
+//% group="micro:bit (V2)"
 //%
 void fullPowerSourceEnable(FullPowerSource source, bool enable) {
 #if MICROBIT_CODAL
@@ -177,22 +203,23 @@ void fullPowerSourceEnable(FullPowerSource source, bool enable) {
   * @param source the source to check
   * @return true if the source will trigger full power
   */
+//% help=power/full-power-source-is-enabled
 //%
 bool fullPowerSourceIsEnabled(FullPowerSource source) {
 #if MICROBIT_CODAL
     switch ( source)
     {
-        case PowerWakeup::A:
+        case FullPowerSource::A:
           return uBit.buttonA.isWakeOnActive() ? true : false;
           break;
 
-        case PowerWakeup::B:
+        case FullPowerSource::B:
           return uBit.buttonB.isWakeOnActive() ? true : false;
           break;
         
-        case PowerWakeup::P0:
-        case PowerWakeup::P1:
-        case PowerWakeup::P2:
+        case FullPowerSource::P0:
+        case FullPowerSource::P1:
+        case FullPowerSource::P2:
         {
             MicroBitPin *pin = getPin((int)source);
             return pin->isWakeOnActive() ? true : false;
@@ -210,9 +237,13 @@ bool fullPowerSourceIsEnabled(FullPowerSource source) {
   * Set the source to trigger full power.
   * @param source the source to set
   */
+//% help=power/full-power-on
+//% group="micro:bit (V2)"
+//% weight=900
+//% block="full power on %source"
 //%
 void fullPowerOn(FullPowerSource source) {
-  fullPowerEnable(source, true);
+  fullPowerSourceEnable(source, true);
 }
 
 
