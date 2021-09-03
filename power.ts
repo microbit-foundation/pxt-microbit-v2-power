@@ -72,7 +72,6 @@ export function lowPowerPause(interval: number): void {
     * The default is to allow.
     */
 //% help=power/low-power-enable
-//% group="micro:bit (V2)"
 //% weight=500
 //% block="low power %enable"
 //% shim=power::lowPowerEnable
@@ -84,7 +83,6 @@ export function lowPowerEnable(enable: LowPowerEnable): void {
     * Determine if low power is enabled
     */
 //% help=power/low-power-is-enabled
-//% group="micro:bit (V2)"
 //% shim=power::lowPowerIsEnabled
 export function lowPowerIsEnabled(): boolean {
     return false
@@ -113,7 +111,6 @@ export function fullPowerEvery(interval: number, code: () => void): void {
     * @param enable true to trigger full power
     */
 //% help=power/full-power-source-enable
-//% group="micro:bit (V2)"
 //% shim=power::fullPowerSourceEnable
 export function fullPowerSourceEnable(source: FullPowerSource, enable: boolean): void {
     return

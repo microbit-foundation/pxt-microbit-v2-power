@@ -103,7 +103,6 @@ void lowPowerPause(int interval) {
   * The default is to allow.
 */
 //% help=power/low-power-enable
-//% group="micro:bit (V2)"
 //% weight=500
 //% block="low power %enable"
 //%
@@ -130,7 +129,6 @@ void lowPowerEnable(LowPowerEnable enable) {
   * Determine if low power is enabled
 */
 //% help=power/low-power-is-enabled
-//% group="micro:bit (V2)"
 //%
 bool lowPowerIsEnabled() {
 #if MICROBIT_CODAL
@@ -172,7 +170,6 @@ void fullPowerEvery(int interval, Action code) {
   * @param enable true to trigger full power
   */
 //% help=power/full-power-source-enable
-//% group="micro:bit (V2)"
 //%
 void fullPowerSourceEnable(FullPowerSource source, bool enable) {
 #if MICROBIT_CODAL
