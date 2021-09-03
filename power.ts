@@ -4,116 +4,139 @@
  * SPDX-License-Identifier: MIT
  */
 
-    const enum PowerWakeup {
-    A = 1,  // MICROBIT_ID_BUTTON_A
-    B = 2,  // MICROBIT_ID_BUTTON_B
-    P0 = 100,  // MICROBIT_ID_IO_P0
-    P1 = 101,  // MICROBIT_ID_IO_P1
-    P2 = 102,  // MICROBIT_ID_IO_P2
-    }
+const enum FullPowerSource {
+    //%button A
+    A = DAL.MICROBIT_ID_BUTTON_A, // 1
+    //%button B
+    B = DAL.MICROBIT_ID_BUTTON_B, // 2
+    //%pin P0
+    P0 = DAL.MICROBIT_ID_IO_P0, // 100
+    //%pin P1
+    P1 = DAL.MICROBIT_ID_IO_P1, // 101
+    //%pin P2
+    P2 = DAL.MICROBIT_ID_IO_P2 // 102
+}
 
 
-    const enum PowerDown {
-    prevent = 0,
-    allow = 1,
-    }
+const enum LowPowerMode {
+    //%continue
+    Continue = 0,
+    //%wait
+    Wait = 1
+}
 
 
-    //% block="Power"
-    //% icon="\uf011"
-    //% color=#AA278D
-    namespace power {
+const enum LowPowerEnable {
+    //%prevent
+    Prevent = 0,
+    //%allow
+    Allow = 1
+}
+
+
+namespace power {
 
     /**
-     * Pause until a wake up event occurs, and request power down when idle.
+     * Set the source to trigger full power.
+     * @param source the source to set
      */
-    //% help=power/deep-sleep
-    //% blockGap=8
+    //% help=power/full-power-on
+    //% group="micro:bit (V2)"
+    //% weight=900
+    //% block="full power on %source"
+    //% shim=power::fullPowerOn
+    export function fullPowerOn(source: FullPowerSource): void {
+        return
+    }
+
+    /**
+     * Do something repeatedy with full power using a timer.
+     * @param interval the time (in ms) for the timer.
+     * @param code the code to execute
+     */
+    //% help=power/full-power-every
     //% group="micro:bit (V2)"
     //% weight=800
-    //% block="deep sleep" shim=power::deepSleep
-    export function deepSleep(): void { basic.pause(0) }
-
-    /**
-     * Request power down when idle, and return immediately.
-     */
-    //% help=power/deep-sleep-async
-    //% blockGap=8
-    //% group="micro:bit (V2)"
-    //% weight=400
-    //% block="request power down" shim=power::powerDownRequest
-    export function powerDownRequest(): void { basic.pause(0) }
-
-    /**
-     * Pause for a fixed interval, and request power down when idle.
-     * @param interval The period of time to pause, in milliseconds.
-     */
-    //% help=power/deep-sleep-pause
-    //% blockGap=8
-    //% group="micro:bit (V2)"
-    //% weight=700
-    //% block="deep sleep pause $interval ms"
-    //% interval.shadow=longTimePicker shim=power::deepSleepPause
-    export function deepSleepPause(interval: number): void { basic.pause(interval) }
-
-    /**
-     * Do something repeatedy using a wake-up timer.
-     * @param interval time (in ms) for the timer.
-     * @param body code to execute
-     */
-    //% help=power/wake-every
     //% blockAllowMultiple=1
     //% interval.shadow=longTimePicker
     //% afterOnStart=true
-    //% group="micro:bit (V2)"
-    //% weight=600
-    //% block="wake every $interval ms" shim=power::wakeEvery
-    export function wakeEvery(interval: number, body: () => void): void { basic.pause(0) }
+    //% block="full power every $interval ms"
+    //% shim=power::fullPowerEvery
+    export function fullPowerEvery(interval: number, code: () => void): void {
+        loops.everyInterval(interval, body)
+    }
 
     /**
-     * Prevent or allow power down during deepSleep.
+     * Request low power when the next idle
+     * @param mode If Continue, then return immediately; if Wait, then pause until a power-up event occurs 
+     */
+    //% help=power/low-power-request
+    //% group="micro:bit (V2)"
+    //% weight=700
+    //% block="request low power||and $mode"
+    //% shim=power::lowPowerRequest
+    export function lowPowerRequest(mode: LowPowerMode = LowPowerMode::Continue): void {
+        basic.pause(0)
+    }
+
+    /**
+     * Pause for a fixed interval, and request low power when idle.
+     * @param interval The period of time to pause, in milliseconds.
+     */
+    //% help=power/low-power-for
+    //% group="micro:bit (V2)"
+    //% weight=600
+    //% interval.shadow=longTimePicker
+    //% block="request low power for $interval ms"
+    //% shim=power::lowPowerPause
+    export function lowPowerPause(interval: number): void {
+        basic.pause(interval)
+    }
+
+    /**
+     * Prevent or allow low power.
      * Prevent and allow requests should occur in pairs.
      * The default is to allow.
      */
-    //% help=power/power-down
-    //% blockGap=8
+    //% help=power/low-power-enable
     //% group="micro:bit (V2)"
     //% weight=500
-    //% block="power down %choice" shim=power::powerDownEnable
-    export function powerDownEnable(choice: PowerDown): void { basic.pause(0) }
+    //% block="low power %enable"
+    //% shim=power::lowPowerEnable
+    export function lowPowerEnable(enable: LowPowerEnable): void {
+        return
+    }
 
     /**
-     * Determine if power down during deepSleep is enabled
+     * Determine if low power is enabled
      */
-    //% help=power/power-down-enabled
-    //% group="micro:bit (V2)" shim=power::powerDownIsEnabled
-    export function powerDownIsEnabled(): boolean { return true }
-
-    /**
-     * Set whether the source should trigger power save wake-up.
-     * @param source the source to set
-     * @param wake true to trigger wake-up or false for no wake-up
-     */
-    //% help=power/wake-on
-    //% group="micro:bit (V2)" shim=power::wakeOn
-    export function wakeOn(source: PowerWakeup, wake: boolean): void { basic.pause(0) }
-
-    /**
-     * Set the source to trigger power save wake-up.
-     * @param source the source to set
-     */
-    //% help=power/wake-on
-    //% blockGap=8
+    //% help=power/low-power-is-enabled
     //% group="micro:bit (V2)"
-    //% weight=900
-    //% block="wake on %source" shim=power::wakeOnEnable
-    export function wakeOnEnable(source: PowerWakeup): void { basic.pause(0) }
+    //% shim=power::lowPowerIsEnabled
+    export function lowPowerIsEnabled(): boolean {
+        return false
+    }
 
     /**
-     * Determine if the source will trigger power save wake-up.
+     * Set whether the source should trigger full power.
      * @param source the source to set
-     * @return true is wake-up is enabled
+     * @param enable true to trigger full power
      */
-    //% help=power/wake-on-enabled shim=power::wakeOnIsEnabled
-    export function wakeOnIsEnabled(source: PowerWakeup): boolean { return false }
+    //% help=power/full-power-source-enable
+    //% group="micro:bit (V2)"
+    //% shim=power::fullPowerSourceEnable
+    export function fullPowerSourceEnable(source: FullPowerSource, enable: boolean): void {
+        return
+    }
+
+    /**
+     * Determine if the source will trigger full power.
+     * @param source the source to check
+     * @return true if the source will trigger full power
+     */
+    //% help=power/full-power-source-is-enabled
+    //% shim=power::fullPowerSourceIsEnabled
+    export function fullPowerSourceIsEnabled(source: FullPowerSource): boolean {
+        return false
+    }
 }
