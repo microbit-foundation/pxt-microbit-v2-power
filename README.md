@@ -1,58 +1,62 @@
 # Makecode Extension to enable power management on micro:bit (V2)
 
-Use this extension to add all the blocks you will need to power the micro:bit on and off in your program when you are using the [latest micro:bit](https://microbit.org/new-microbit/).
+Use this extension to add all the blocks you will need to use less power in your program when you are using the [latest micro:bit](https://microbit.org/new-microbit/).
 
 This extension might be useful when you want to conserve battery power, such as during a data logging activity.
 
+
 ## Usage
 
-### Put the micro:bit to sleep 💤
+### Put the micro:bit to sleep in a low power mode 💤
 
-To make the micro:bit sleep, you need to send a request to power it down. The ``||power.powerDownRequest||`` block will ask the micro:bit to power down at the next opportunity, such as when the current code operation has been allowed to complete.
+The ``||power.lowPowerRequest||`` block will ask the micro:bit to switch to low power mode at the next opportunity, such as when the current code operation has been allowed to complete, or inside ``||basic.pause(ms)||``.
 
 ```blocks
 input.onButtonPressed(Button.B, function () {
-    power.powerDownRequest()
+    power.lowPowerRequest()
 })
 ```
 
-You can also ask the micro:bit to enter a ``||power.deepSleep||`` where it will pause until a wake up event occurs and power down at the next opportunity.
+You can send ``||power.lowPowerRequest(LowPowerMode.Wait)||``. Then micro:bit will also pause until a full power event occurs.
 
-The ``||power.deepSleepPause(ms)||`` block will also ask the micro:bit to sleep for a set interval in milliseconds.
+The ``||power.lowPowerPause(ms)||`` block will ask the micro:bit to sleep for a set interval in milliseconds.
 
-You can also use the ``||PowerDown.prevent||`` and ``||PowerDown.allow||`` blocks to block a power down request until the code inside the two blocks has finished running. It is expected that you would use these blocks in pairs.
+In low power mode, micro:bit is asleep, and your program is paused. When micro:bit wakes up to full power mode, your program continues from the point it stopped.
+
+You can use the ``||power.lowPowerEnable(PowerDown.prevent)||`` and ``||power.lowPowerEnable(PowerDown.allow)||`` blocks to block low power requests until the code between the two blocks has finished running. It is expected that you would use these blocks in pairs.
 
 ```blocks
 basic.forever(function () {
-    power.powerDownEnable(PowerDown.prevent)
+    power.lowPowerEnable(PowerDown.prevent)
     led.plot(2, 2)
     basic.pause(1000)
     led.unplot(2, 2)
     led.plot(2, 1)
     basic.pause(1000)
     led.unplot(2, 1)
-    power.powerDownEnable(PowerDown.allow)
-    power.powerDownRequest()
+    power.lowPowerEnable(PowerDown.allow)
+    power.lowPowerRequest()
 })
 ```
 
-### Wake the micro:bit from sleep ⏰
+### Wake up micro:bit to full power mode ⏰
 
-In order to wake the micro:bit, you need to define an event to trigger the wake up call.
+In order to wake up micro:bit to full power mode, you need to define an event to trigger the wake up call.
 
 You can wake the micro:bit when a button or pin is pressed. In this example, the micro:bit will wake up when Button A or Pin 0 has been pressed.
 
 ```blocks
-power.wakeOnEnable(PowerWakeup.A)
-power.wakeOnEnable(PowerWakeup.P0)
+power.fullPowerOn(FullPowerSource.A)
+power.fullPowerOn(FullPowerSource.P0)
 ```
 
 You can also wake the micro:bit at a set time interval in milliseconds. In this example, the micro:bit will wake up every minute and show a smiley face on the screen
 
 ```blocks
-power.wakeEvery(60000, function () {
+power.fullPowerEvery(60000, function () {
     basic.showIcon(IconNames.Happy)
     basic.clearScreen()
+    power.lowPowerRequest()
 })
 ```
 
