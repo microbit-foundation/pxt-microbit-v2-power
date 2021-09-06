@@ -41,7 +41,7 @@ basic.forever(function () {
 
 ### Wake up the micro:bit to full power mode ⏰
 
-In order to wake up micro:bit to full power mode, you need to define an event to trigger the wake up call.
+In order to wake up the micro:bit to full power mode, you need to define an event to trigger the wake up call.
 
 You can wake the micro:bit when a button or pin is pressed. In this example, the micro:bit will wake up when Button A or Pin 0 has been pressed.
 
