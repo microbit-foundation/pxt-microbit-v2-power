@@ -39,7 +39,7 @@ basic.forever(function () {
 })
 ```
 
-### Wake up micro:bit to full power mode ⏰
+### Wake up the micro:bit to full power mode ⏰
 
 In order to wake up micro:bit to full power mode, you need to define an event to trigger the wake up call.
 
