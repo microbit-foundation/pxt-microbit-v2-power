@@ -21,7 +21,7 @@ You can send ``||power.lowPowerRequest(LowPowerMode.Wait)||``. Then micro:bit wi
 
 The ``||power.lowPowerPause(ms)||`` block will ask the micro:bit to sleep for a set interval in milliseconds.
 
-In low power mode, micro:bit is asleep, and your program is paused. When micro:bit wakes up to full power mode, your program continues from the point it stopped.
+In low power mode, the micro:bit is asleep, and your program is paused. When the micro:bit wakes up to full power mode, your program continues from the point it stopped.
 
 You can use the ``||power.lowPowerEnable(PowerDown.prevent)||`` and ``||power.lowPowerEnable(PowerDown.allow)||`` blocks to block low power requests until the code between the two blocks has finished running. It is expected that you would use these blocks in pairs.
 
