@@ -47,6 +47,7 @@ namespace power {
 //% group="micro:bit (V2)"
 //% weight=700
 //% block="request low power||and $mode"
+//% parts="v2"
 //% shim=power::lowPowerRequest
 export function lowPowerRequest(mode?: LowPowerMode): void {
     basic.pause(0)
@@ -61,6 +62,7 @@ export function lowPowerRequest(mode?: LowPowerMode): void {
 //% weight=600
 //% interval.shadow=longTimePicker
 //% block="request low power for $interval ms"
+//% parts="v2"
 //% shim=power::lowPowerPause
 export function lowPowerPause(interval: number): void {
     basic.pause(interval)
@@ -74,6 +76,7 @@ export function lowPowerPause(interval: number): void {
 //% help=power/low-power-enable
 //% weight=500
 //% block="low power %enable"
+//% parts="v2"
 //% shim=power::lowPowerEnable
 export function lowPowerEnable(enable: LowPowerEnable): void {
     return
@@ -100,6 +103,7 @@ export function lowPowerIsEnabled(): boolean {
 //% interval.shadow=longTimePicker
 //% afterOnStart=true
 //% block="full power every $interval ms"
+//% parts="v2"
 //% shim=power::fullPowerEvery
 export function fullPowerEvery(interval: number, code: () => void): void {
     loops.everyInterval(interval, code)
@@ -135,6 +139,7 @@ export function fullPowerSourceIsEnabled(source: FullPowerSource): boolean {
 //% group="micro:bit (V2)"
 //% weight=900
 //% block="full power on %source"
+//% parts="v2"
 //% shim=power::fullPowerOn
 export function fullPowerOn(source: FullPowerSource): void {
     return
