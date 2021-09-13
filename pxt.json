@@ -1,6 +1,6 @@
 {
     "name": "power",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "description": "Power saving. micro:bit (V2) only.",
     "dependencies": {
         "core": "*"
@@ -8,7 +8,8 @@
     "files": [
         "power.cpp",
         "power.ts",
-        "README.md"
+        "README.md",
+        "basic-sleep-wake.md"
     ],
     "testFiles": [
         "test.ts"
