@@ -23,18 +23,18 @@ The ``||power.lowPowerPause(ms)||`` block will ask the micro:bit to sleep for a 
 
 In low power mode, the micro:bit is asleep, and your program is paused. When the micro:bit wakes up to full power mode, your program continues from the point it stopped.
 
-You can use the ``||power.lowPowerEnable(PowerDown.prevent)||`` and ``||power.lowPowerEnable(PowerDown.allow)||`` blocks to block low power requests until the code between the two blocks has finished running. It is expected that you would use these blocks in pairs.
+You can use the ``||power.lowPowerEnable(LowPowerEnable.Prevent)||`` and ``||power.lowPowerEnable(LowPowerEnable.Allow)||`` blocks to block low power requests until the code between the two blocks has finished running. It is expected that you would use these blocks in pairs.
 
 ```blocks
 basic.forever(function () {
-    power.lowPowerEnable(PowerDown.prevent)
+    power.lowPowerEnable(LowPowerEnable.Prevent)
     led.plot(2, 2)
     basic.pause(1000)
     led.unplot(2, 2)
     led.plot(2, 1)
     basic.pause(1000)
     led.unplot(2, 1)
-    power.lowPowerEnable(PowerDown.allow)
+    power.lowPowerEnable(LowPowerEnable.Allow)
     power.lowPowerRequest()
 })
 ```
