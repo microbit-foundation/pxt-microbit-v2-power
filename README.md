@@ -27,14 +27,14 @@ You can use the ``||power.lowPowerEnable(PowerDown.prevent)||`` and ``||power.lo
 
 ```blocks
 basic.forever(function () {
-    power.lowPowerEnable(PowerDown.prevent)
+    power.lowPowerEnable(LowPowerEnable.prevent)
     led.plot(2, 2)
     basic.pause(1000)
     led.unplot(2, 2)
     led.plot(2, 1)
     basic.pause(1000)
     led.unplot(2, 1)
-    power.lowPowerEnable(PowerDown.allow)
+    power.lowPowerEnable(LowPowerEnable.allow)
     power.lowPowerRequest()
 })
 ```
