@@ -4,36 +4,6 @@
  * SPDX-License-Identifier: MIT
  */
 
-const enum FullPowerSource {
-    //% block="button A"
-    A = DAL.MICROBIT_ID_BUTTON_A, // 1
-    //% block="button B"
-    B = DAL.MICROBIT_ID_BUTTON_B, // 2
-    //% block="pin P0"
-    P0 = DAL.MICROBIT_ID_IO_P0, // 100
-    //% block="pin P1"
-    P1 = DAL.MICROBIT_ID_IO_P1, // 101
-    //% block="pin P2"
-    P2 = DAL.MICROBIT_ID_IO_P2 // 102
-}
-
-
-const enum LowPowerMode {
-    //% block="continue"
-    Continue = 0,
-    //% block="wait"
-    Wait = 1
-}
-
-
-const enum LowPowerEnable {
-    //% block="prevent"
-    Prevent = 0,
-    //% block="allow"
-    Allow = 1
-}
-
-
 //% block="Power"
 //% icon="\uf011"
 //% color=#AA278D
@@ -48,7 +18,7 @@ namespace power {
 //% weight=700
 //% block="request low power||and $mode"
 //% parts="v2"
-//% shim=power::lowPowerRequest
+//% shim=power::_lowPowerRequest
 export function lowPowerRequest(mode?: LowPowerMode): void {
     basic.pause(0)
 }
@@ -63,7 +33,7 @@ export function lowPowerRequest(mode?: LowPowerMode): void {
 //% interval.shadow=longTimePicker
 //% block="request low power for $interval ms"
 //% parts="v2"
-//% shim=power::lowPowerPause
+//% shim=power::_lowPowerPause
 export function lowPowerPause(interval: number): void {
     basic.pause(interval)
 }
@@ -77,7 +47,7 @@ export function lowPowerPause(interval: number): void {
 //% weight=500
 //% block="low power %enable"
 //% parts="v2"
-//% shim=power::lowPowerEnable
+//% shim=power::_lowPowerEnable
 export function lowPowerEnable(enable: LowPowerEnable): void {
     return
 }
@@ -86,7 +56,7 @@ export function lowPowerEnable(enable: LowPowerEnable): void {
     * Determine if low power is enabled
     */
 //% help=power/low-power-is-enabled
-//% shim=power::lowPowerIsEnabled
+//% shim=power::_lowPowerIsEnabled
 export function lowPowerIsEnabled(): boolean {
     return false
 }
@@ -104,7 +74,7 @@ export function lowPowerIsEnabled(): boolean {
 //% afterOnStart=true
 //% block="full power every $interval ms"
 //% parts="v2"
-//% shim=power::fullPowerEvery
+//% shim=power::_fullPowerEvery
 export function fullPowerEvery(interval: number, code: () => void): void {
     loops.everyInterval(interval, code)
 }
@@ -115,7 +85,7 @@ export function fullPowerEvery(interval: number, code: () => void): void {
     * @param enable true to trigger full power
     */
 //% help=power/full-power-source-enable
-//% shim=power::fullPowerSourceEnable
+//% shim=power::_fullPowerSourceEnable
 export function fullPowerSourceEnable(source: FullPowerSource, enable: boolean): void {
     return
 }
@@ -126,7 +96,7 @@ export function fullPowerSourceEnable(source: FullPowerSource, enable: boolean):
     * @return true if the source will trigger full power
     */
 //% help=power/full-power-source-is-enabled
-//% shim=power::fullPowerSourceIsEnabled
+//% shim=power::_fullPowerSourceIsEnabled
 export function fullPowerSourceIsEnabled(source: FullPowerSource): boolean {
     return false
 }
@@ -140,7 +110,7 @@ export function fullPowerSourceIsEnabled(source: FullPowerSource): boolean {
 //% weight=900
 //% block="full power on %source"
 //% parts="v2"
-//% shim=power::fullPowerOn
+//% shim=power::_fullPowerOn
 export function fullPowerOn(source: FullPowerSource): void {
     return
 }

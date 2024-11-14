@@ -40,9 +40,9 @@ enum class LowPowerMode {
 
 enum class LowPowerEnable {
     //% block="prevent"
-    Prevent,
+    Prevent = 0,
     //% block="allow"
-    Allow
+    Allow = 1
 };
 
 
@@ -55,7 +55,7 @@ namespace power {
 int timerEventValue  = 1;
 #endif // MICROBIT_CODAL
 
-void lowPowerRequest(LowPowerMode mode = LowPowerMode::Continue);
+void _lowPowerRequest(LowPowerMode mode = LowPowerMode::Continue);
 
 /**
   * Request low power when the next idle
@@ -66,7 +66,7 @@ void lowPowerRequest(LowPowerMode mode = LowPowerMode::Continue);
 //% weight=700
 //% block="request low power||and $mode"
 //%
-void lowPowerRequest(LowPowerMode mode) {
+void _lowPowerRequest(LowPowerMode mode) {
 #if MICROBIT_CODAL
     if ( mode == LowPowerMode::Wait)
         uBit.power.deepSleep();
@@ -88,7 +88,7 @@ void lowPowerRequest(LowPowerMode mode) {
 //% interval.shadow=longTimePicker
 //% block="request low power for $interval ms"
 //%
-void lowPowerPause(int interval) {
+void _lowPowerPause(int interval) {
 #if MICROBIT_CODAL
     uBit.power.deepSleep(interval);
 #else
@@ -106,7 +106,7 @@ void lowPowerPause(int interval) {
 //% weight=500
 //% block="low power %enable"
 //%
-void lowPowerEnable(LowPowerEnable enable) {
+void _lowPowerEnable(LowPowerEnable enable) {
 #if MICROBIT_CODAL
     switch ( enable)
     {
@@ -130,7 +130,7 @@ void lowPowerEnable(LowPowerEnable enable) {
 */
 //% help=power/low-power-is-enabled
 //%
-bool lowPowerIsEnabled() {
+bool _lowPowerIsEnabled() {
 #if MICROBIT_CODAL
     return uBit.power.powerDownIsEnabled();
 #else
@@ -152,7 +152,7 @@ bool lowPowerIsEnabled() {
 //% afterOnStart=true
 //% block="full power every $interval ms"
 //%
-void fullPowerEvery(int interval, Action code) {
+void _fullPowerEvery(int interval, Action code) {
 #if MICROBIT_CODAL
     registerWithDal( MICROBIT_ID_MAKECODE_POWER, timerEventValue, code);
     // CODAL_TIMER_EVENT_FLAGS_WAKEUP makes the timer event trigger power up
@@ -171,7 +171,7 @@ void fullPowerEvery(int interval, Action code) {
   */
 //% help=power/full-power-source-enable
 //%
-void fullPowerSourceEnable(FullPowerSource source, bool enable) {
+void _fullPowerSourceEnable(FullPowerSource source, bool enable) {
 #if MICROBIT_CODAL
     switch ( source)
     {
@@ -205,7 +205,7 @@ void fullPowerSourceEnable(FullPowerSource source, bool enable) {
   */
 //% help=power/full-power-source-is-enabled
 //%
-bool fullPowerSourceIsEnabled(FullPowerSource source) {
+bool _fullPowerSourceIsEnabled(FullPowerSource source) {
 #if MICROBIT_CODAL
     switch ( source)
     {
@@ -242,8 +242,8 @@ bool fullPowerSourceIsEnabled(FullPowerSource source) {
 //% weight=900
 //% block="full power on %source"
 //%
-void fullPowerOn(FullPowerSource source) {
-  fullPowerSourceEnable(source, true);
+void _fullPowerOn(FullPowerSource source) {
+  _fullPowerSourceEnable(source, true);
 }
 
 

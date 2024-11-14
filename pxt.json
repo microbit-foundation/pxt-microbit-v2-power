@@ -8,6 +8,8 @@
     "files": [
         "power.cpp",
         "power.ts",
+        "shims.d.ts",
+        "enums.d.ts",
         "README.md",
         "basic-sleep-wake.md"
     ],
