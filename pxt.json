@@ -1,6 +1,6 @@
 {
     "name": "power",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "description": "Power saving. micro:bit (V2) only.",
     "dependencies": {
         "core": "*"
@@ -24,6 +24,6 @@
     "supportedTargets": [
         "microbit"
     ],
-    "hidden": true,
-    "preferredEditor": "blocksprj"
+    "preferredEditor": "blocksprj",
+    "hidden": true
 }
