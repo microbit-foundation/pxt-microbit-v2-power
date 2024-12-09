@@ -24,7 +24,5 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "blocksprj",
-    "hidden": true,
-    "searchOnly": true
+    "preferredEditor": "blocksprj"
 }
